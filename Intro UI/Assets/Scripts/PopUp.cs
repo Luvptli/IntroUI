@@ -8,6 +8,7 @@ public class PopUp : MonoBehaviour
     GameObject background;
     [SerializeField]
     GameObject popup;
+    
 
     [SerializeField]
     float finalYPos = 0.5f;
@@ -15,12 +16,12 @@ public class PopUp : MonoBehaviour
     float durationAnim = 0.75f;
     [SerializeField]
     LeanTweenType animCurve;
+    
 
     private void Start()
     {
         background.SetActive(false);
         popup.SetActive(false);
-        LeanTween.moveLocalY(popup, finalYPos, durationAnim).setEase(animCurve);
     }
      
     // Update is called once per frame
@@ -28,8 +29,39 @@ public class PopUp : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            background.SetActive(true);
-            popup.SetActive(true);
+            if (popup.activeSelf)
+            {
+                ExitPopUp();
+            }
+            else
+            {
+                ShowPopUp();
+            }
+            
         }
+    }
+
+    public void ShowPopUp()
+    {
+        LeanTween.alphaCanvas(background.GetComponent<CanvasGroup>(), 1f, 0).setOnComplete(() =>
+        {
+            background.SetActive(true);
+        });
+        popup.SetActive(true);
+        LeanTween.moveLocalY(popup, -900f, 0f);
+        LeanTween.moveLocalY(popup, finalYPos, durationAnim).setEase(animCurve);
+        
+    }
+    public void ExitPopUp()
+    {
+        LeanTween.moveLocalY(popup, -900f, durationAnim).setEase(animCurve).setOnComplete(() =>
+        {
+            popup.SetActive(false);
+        });
+        LeanTween.alphaCanvas(background.GetComponent<CanvasGroup>(), 0f, durationAnim).setOnComplete(() =>
+        {
+            background.SetActive(false);
+        });
+        
     }
 }
