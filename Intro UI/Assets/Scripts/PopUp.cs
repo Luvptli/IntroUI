@@ -43,8 +43,10 @@ public class PopUp : MonoBehaviour
 
     public void ShowPopUp()
     {
-        LeanTween.alphaCanvas(background.GetComponent<CanvasGroup>(), 1f, 0).setOnComplete(() =>
+        
+        LeanTween.alphaCanvas(background.GetComponent<CanvasGroup>(), 0f, 0).setOnComplete(() =>
         {
+            LeanTween.alphaCanvas(background.GetComponent<CanvasGroup>(), 1f, durationAnim);
             background.SetActive(true);
         });
         popup.SetActive(true);
