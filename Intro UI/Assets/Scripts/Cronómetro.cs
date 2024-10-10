@@ -12,6 +12,9 @@ public class Cronómetro : MonoBehaviour
     TextMeshProUGUI timeText;
 
     [SerializeField]
+    bool tiempoCorriendo;
+
+    [SerializeField]
     GameObject buttonStart;
     [SerializeField]
     GameObject buttonPause;
@@ -23,16 +26,25 @@ public class Cronómetro : MonoBehaviour
 
     private void Start()
     {
-        buttonPause.SetActive(false);
+        tiempoCorriendo = false;
     }
     private void Update()
     {
+        int minutos = Mathf.FloorToInt(time / 60F);
+        int segundos = Mathf.FloorToInt(time % 60F);
+        int centesimas = Mathf.FloorToInt((time * 60) % 60F);
+        if (tiempoCorriendo)
+        {
             time = time + Time.deltaTime;
-            timeText.text = time.ToString();
+            timeText.text = string.Format("{0:00}:{1:00}:{2:00}", minutos, segundos, centesimas);
+        }
+        
+
     }
 
     public void ButtonPause()
     {
+        tiempoCorriendo = false;
         buttonStart.SetActive(true);
         buttonPause.SetActive(false);
         LeanTween.scale(buttonPause, Vector3.one * 0.9f, animTime).setOnComplete(() =>
@@ -43,6 +55,7 @@ public class Cronómetro : MonoBehaviour
 
     public void ButtonStart()
     {
+        tiempoCorriendo=true;
         buttonStart.SetActive(false);
         buttonPause.SetActive(true);
         LeanTween.scale(buttonStart, Vector3.one * 0.9f, animTime).setOnComplete(() =>
@@ -53,6 +66,8 @@ public class Cronómetro : MonoBehaviour
     public void ButtonRestart()
     {
         time = 0;
+        tiempoCorriendo = false;
+        timeText.text = time.ToString();
         LeanTween.scale(buttonRestart, Vector3.one * 0.9f, animTime).setOnComplete(() =>
         {
             LeanTween.scale(buttonRestart, Vector3.one, animTime);
