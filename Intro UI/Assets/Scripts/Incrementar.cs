@@ -20,14 +20,6 @@ public class Incrementar : MonoBehaviour
     [SerializeField]
     GameObject button;
 
-    void Start()
-    {
-    }
-
-    void Update()
-    {
-
-    }
     public void ButtonTouch()
     {
         incrementar++;
