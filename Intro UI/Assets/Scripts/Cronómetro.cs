@@ -28,18 +28,28 @@ public class Cronómetro : MonoBehaviour
     {
         tiempoCorriendo = false;
     }
+
     private void Update()
     {
+        int horas = Mathf.FloorToInt(time / 3600F);
         int minutos = Mathf.FloorToInt(time / 60F);
         int segundos = Mathf.FloorToInt(time % 60F);
         int centesimas = Mathf.FloorToInt((time * 60) % 60F);
+
+        /*float horas = time / 3600f;
+        float restoHours = time % 3600f;
+        int minutos = (int) restoHours / 60;
+        float segundos = minutos % 60f;
+        int centesimas = ((int)segundos - (int)segundos) * 1000;
+        
+        timeText.text= horas.ToString (00) + minutos.ToString (00) + segundos.ToString (00) + centesimas.ToString (00);
+         */
+
         if (tiempoCorriendo)
         {
             time = time + Time.deltaTime;
-            timeText.text = string.Format("{0:00}:{1:00}:{2:00}", minutos, segundos, centesimas);
+            timeText.text = string.Format("{0:00}:{1:00}:{2:00}:{3:00}", horas, minutos, segundos, centesimas);
         }
-        
-
     }
 
     public void ButtonPause()
