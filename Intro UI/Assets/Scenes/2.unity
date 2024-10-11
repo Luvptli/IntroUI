@@ -367,11 +367,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 0
+  resta: 0
   pulsaciones: 0
   pMin: 0
   timeText: {fileID: 2122793923}
-  nPulsaciones: {fileID: 0}
-  pulsacionesMin: {fileID: 0}
+  nPulsaciones: {fileID: 487563888}
+  pulsacionesMin: {fileID: 1828452173}
+  tiempoCorre: 0
 --- !u!114 &931957565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -975,7 +977,7 @@ GameObject:
   - component: {fileID: 1828452174}
   - component: {fileID: 1828452173}
   m_Layer: 5
-  m_Name: NP/S
+  m_Name: P/min
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1215,11 +1217,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 0
+  resta: 0
   pulsaciones: 0
   pMin: 0
   timeText: {fileID: 2122793923}
   nPulsaciones: {fileID: 487563888}
   pulsacionesMin: {fileID: 1828452173}
+  tiempoCorre: 0
 --- !u!1 &2122793921
 GameObject:
   m_ObjectHideFlags: 0
@@ -1286,8 +1290,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

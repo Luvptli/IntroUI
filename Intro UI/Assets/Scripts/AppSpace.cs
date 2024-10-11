@@ -23,13 +23,14 @@ public class AppSpace : MonoBehaviour
     void Update()
     {
         int segundos = Mathf.FloorToInt(time % 60F);
-        int centesimas = Mathf.FloorToInt((time * 60) % 60F); 
+        int centesimas = Mathf.FloorToInt((time * 60) % 60F);
+        timeText.text = time.ToString();
 
         if (pulsetime)
         {
            
-            time = time + Time.deltaTime;
-            timeText.text = string.Format("{0:00}:{1:00}", segundos, centesimas);
+            time += Time.deltaTime;
+            timeText.text =string.Format("{0:00}:{1:00}", segundos, centesimas);
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 pulsetime = false;
